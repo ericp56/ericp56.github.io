@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://community.voxeo.com/xmlns/vxml"
+	xmlns="http://community.voxeo.com/xmlns/vxml" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+	<xsd:annotation>
+		<xsd:documentation>VoiceXML Voxeo extensions</xsd:documentation>
+	</xsd:annotation>
+	<xsd:annotation>
+		<xsd:documentation>By Eric Phetteplace
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:annotation>
+		<xsd:documentation>Numeric references are to sections in VoiceXML 2.0.
+			[REFERENCE] refers to a reference in VoiceXML 2.0.
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:annotation>
+		<xsd:documentation>Importing dependent schemas including datatypes,
+			attributes and adapter schemas for SRGS 1.0 and SSML 1.0
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace"
+		schemaLocation="xml.xsd" />
+	<xsd:annotation>
+		<xsd:documentation>Common Content Models</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:element name="logcontrol" xmlns="http://community.voxeo.com/xmlns/vxml">
+		<xsd:complexType mixed="true">
+			<xsd:attribute name="mode" type="xsd:string" />
+		</xsd:complexType>
+	</xsd:element>
+
+</xsd:schema>

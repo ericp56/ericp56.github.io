@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:ivrResponse="http://response.ivr.xml.physiciansmutual.com" 
+	targetNamespace="http://response.ivr.xml.physiciansmutual.com" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://service.paymentmgmt.physiciansmutual.com">
+
+    <xsd:element name="ivrResponse" type="ivrResponse:IvrResponse"/>
+    
+    <xsd:complexType name="IvrResponse" abstract="true">
+    	<xsd:sequence>
+    		<xsd:element name="policyNumber" maxOccurs="1"
+    			minOccurs="1">
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:string">
+    					<xsd:pattern value="\d{9}|[a-zA-Z]\d{9}"></xsd:pattern>
+    					<xsd:minLength value="9"></xsd:minLength>
+    					<xsd:maxLength value="10"></xsd:maxLength>
+    					<xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:element>
+    		<xsd:element name="returnCode" maxOccurs="1"
+    			minOccurs="1">
+    			<xsd:annotation>
+    				<xsd:documentation>
+    					Return Code - length of 2, Valid Return Codes
+    					are: OK - Good return code. NF - Requested
+    					policy not found. IN - Incomplete information
+    					returned. ER - A program error has occurred. SE
+    					- Security Error. EN - Environment Error. DE -
+    					Invalid DSN number passed. SC - Schema Error. NS
+    					- Operation not supported.
+    				</xsd:documentation>
+    			</xsd:annotation>
+    			<xsd:simpleType>
+    				<xsd:restriction base="xsd:string">
+    					<xsd:pattern value="[A-Z]{2}"></xsd:pattern>
+    					<xsd:length value="2"></xsd:length>
+    					<xsd:enumeration value="DE"></xsd:enumeration>
+    					<xsd:enumeration value="EN"></xsd:enumeration>
+    					<xsd:enumeration value="ER"></xsd:enumeration>
+    					<xsd:enumeration value="IN"></xsd:enumeration>
+    					<xsd:enumeration value="NF"></xsd:enumeration>
+    					<xsd:enumeration value="OK"></xsd:enumeration>
+    					<xsd:enumeration value="SC"></xsd:enumeration>
+    					<xsd:enumeration value="SE"></xsd:enumeration>
+    					<xsd:enumeration value="NS"></xsd:enumeration>
+    				</xsd:restriction>
+    			</xsd:simpleType>
+    		</xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="StandardCallResponse">
+    	<xsd:complexContent>
+    		<xsd:extension base="ivrResponse:IvrResponse">
+    			<xsd:sequence>
+    				<xsd:element name="checkDigit">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="1" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="kindCode" maxOccurs="1"
+    					minOccurs="1">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="3" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="subKindCode">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="2" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="planCode">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="1" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="primaryInsuredDOB"
+    					type="ivrResponse:DateType">
+    				</xsd:element>
+    				<xsd:element name="primaryDependentDOB"
+    					type="ivrResponse:DateType">
+    				</xsd:element>
+    				<xsd:element name="effectiveDate"
+    					type="ivrResponse:DateType">
+    				</xsd:element>
+    				<xsd:element name="paidToDate">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="10" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="noticeCode">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="1" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="hasVisionRider">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="1" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>    				
+    				<xsd:element name="vantageStatusCode">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="1" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="ownerDOB"
+    					type="ivrResponse:DateType">
+    				</xsd:element>
+    				<xsd:element name="vantageInsuredDOB"
+    					type="ivrResponse:DateType">
+    				</xsd:element>
+    				<xsd:element name="phoneNumber">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="12" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="firstCharacterOfLastName">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="1" />
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="dailyBenefit">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:minLength value="0"></xsd:minLength>
+    							<xsd:maxLength value="13"></xsd:maxLength>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="outpatientBenefit">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:minLength value="0"></xsd:minLength>
+    							<xsd:maxLength value="13"></xsd:maxLength>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="ambulanceBenefit">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:minLength value="0"></xsd:minLength>
+    							<xsd:maxLength value="13"></xsd:maxLength>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="cancerBenefit">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:minLength value="0"></xsd:minLength>
+    							<xsd:maxLength value="13"></xsd:maxLength>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="logMessage" nillable="true">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:minLength value="0"></xsd:minLength>
+    							<xsd:maxLength value="29"></xsd:maxLength>
+    							<xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="policyStatus"
+    					type="ivrResponse:PolicyStatus" maxOccurs="1" minOccurs="0">
+    				</xsd:element>
+    				<xsd:element name="insuranceType" maxOccurs="1"
+    					minOccurs="0">
+    					<xsd:annotation>
+    						<xsd:documentation>
+    							H - Health L - Life
+    						</xsd:documentation>
+    					</xsd:annotation>
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:enumeration value="H"></xsd:enumeration>
+    							<xsd:enumeration value="L"></xsd:enumeration>
+    							<xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+
+    							<xsd:length value="1"></xsd:length>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    				<xsd:element name="companyCode" maxOccurs="1"
+    					minOccurs="0">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:enumeration value="PMIC"></xsd:enumeration>
+    							<xsd:enumeration value="PLIC"></xsd:enumeration>
+    							<xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+
+    							<xsd:length value="4"></xsd:length>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+
+    				<xsd:element name="riderCode" maxOccurs="unbounded"
+    					minOccurs="0">
+    					<xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="5"></xsd:length>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+    			</xsd:sequence>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="PolicyStatus">
+		<xsd:sequence>
+			<xsd:element name="StatusCode" type="xsd:string" />
+			<xsd:element name="ShortName" type="xsd:string" />
+			<xsd:element name="LongName" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>    
+
+    <xsd:complexType name="ClaimCallResponse">
+    	<xsd:complexContent>
+    		<xsd:extension base="ivrResponse:IvrResponse">
+    			<xsd:sequence>
+    				<xsd:element name="mostRecentClaims"
+    					type="ivrResponse:IvrClaim" maxOccurs="unbounded" minOccurs="0">
+    				</xsd:element>
+    				<xsd:element name="mostRecentDrafts"
+    					type="ivrResponse:IvrDraft" maxOccurs="unbounded"
+    					minOccurs="0">
+    				</xsd:element>
+		    		<xsd:element name="logMessage" nillable="true">
+		    			<xsd:simpleType>
+		    				<xsd:restriction base="xsd:string">
+		    					<xsd:minLength value="0"></xsd:minLength>
+		    					<xsd:maxLength value="29"></xsd:maxLength>
+		    					<xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+		    				</xsd:restriction>
+		    			</xsd:simpleType>
+		    		</xsd:element>    				
+    			</xsd:sequence>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="IdCardCallResponse">
+    	<xsd:complexContent>
+    		<xsd:extension base="ivrResponse:IvrResponse">
+    			<xsd:sequence>
+    				<xsd:element name="idCardCallReturnCode" maxOccurs="1" minOccurs="1" nillable="false">
+                        <xsd:annotation>
+                        	<xsd:documentation>ID Cards Call Code Returned Fields: 
+1.  The 2 character return code from C53050</xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:simpleType>
+    						<xsd:annotation>
+    							<xsd:documentation>  							</xsd:documentation>
+    						</xsd:annotation>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="2"></xsd:length>
+    							<xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+		    		<xsd:element name="logMessage" nillable="true">
+		    			<xsd:simpleType>
+		    				<xsd:restriction base="xsd:string">
+		    					<xsd:minLength value="0"></xsd:minLength>
+		    					<xsd:maxLength value="29"></xsd:maxLength>
+		    					<xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+		    				</xsd:restriction>
+		    			</xsd:simpleType>
+		    		</xsd:element>    				
+    			</xsd:sequence>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="FormCallResponse">
+    	<xsd:complexContent>
+    		<xsd:extension base="ivrResponse:IvrResponse">
+    			<xsd:sequence>
+    				<xsd:element name="formCallReturnCode" maxOccurs="1" minOccurs="1" nillable="false">
+                        <xsd:annotation>
+                        	<xsd:documentation>Forms Call Code Returned Fields:
+1.  The 2 character return code from C51008</xsd:documentation>
+                        </xsd:annotation>
+                        <xsd:simpleType>
+    						<xsd:restriction base="xsd:string">
+    							<xsd:length value="2"></xsd:length>
+    						</xsd:restriction>
+    					</xsd:simpleType>
+    				</xsd:element>
+		    		<xsd:element name="logMessage" nillable="true">
+		    			<xsd:simpleType>
+		    				<xsd:restriction base="xsd:string">
+		    					<xsd:minLength value="0"></xsd:minLength>
+		    					<xsd:maxLength value="29"></xsd:maxLength>
+		    					<xsd:whiteSpace value="collapse"></xsd:whiteSpace>
+		    				</xsd:restriction>
+		    			</xsd:simpleType>
+		    		</xsd:element>    				
+    			</xsd:sequence>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="IvrDraft">
+		<xsd:sequence>
+			<xsd:element name="claimNumber" maxOccurs="1" minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="10" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="draftAmount" maxOccurs="1"
+				minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="1"></xsd:minLength>
+						<xsd:maxLength value="9"></xsd:maxLength>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="draftStatusCode" maxOccurs="1"
+				minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="1"></xsd:length>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="issueDate" type="ivrResponse:DateType"
+				maxOccurs="1" minOccurs="1">
+			</xsd:element>
+			<xsd:element name="personName" maxOccurs="1" minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:minLength value="0"></xsd:minLength>
+						<xsd:maxLength value="25"></xsd:maxLength>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="DateType">
+    	<xsd:restriction base="xsd:string">
+    		<xsd:pattern
+    			value="([0-1][0-9])-([0-3][0-9])-([0-9][0-9][0-9][0-9])|\s{10}|\s">
+    		</xsd:pattern>
+    		<xsd:length value="10"></xsd:length>
+    	</xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="IvrClaim">
+		<xsd:sequence>
+			<xsd:element name="claimNumber" maxOccurs="1" minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="10" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="claimStatusCode" maxOccurs="1" minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="1" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="specialHandlingCode" maxOccurs="1" minOccurs="1">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:length value="1" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="claimStartDate" type="ivrResponse:DateType" maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="claimEndDate" type="ivrResponse:DateType" maxOccurs="1" minOccurs="1"></xsd:element>
+			<xsd:element name="claimNoticeDate" type="ivrResponse:DateType" maxOccurs="1" minOccurs="1"></xsd:element>
+		</xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CouponBookResponse">
+    	<xsd:complexContent>
+    		<xsd:extension base="ivrResponse:IvrResponse">
+	    		<xsd:sequence>
+					<xsd:element name="requestRecieved" type="xsd:boolean" />
+					<xsd:element minOccurs="1" maxOccurs="unbounded" name="billingValidationMessages" type="xsd:string" />
+				</xsd:sequence>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ElectronicPaymentResponse">
+    	<xsd:complexContent>
+    		<xsd:extension base="ivrResponse:IvrResponse">
+	    		<xsd:sequence>
+					<xsd:element minOccurs="1" maxOccurs="1" name="billingValidationMessage" type="xsd:string" />
+	    			<xsd:element name="paymentStatus" type="xsd:string" minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="authorisationId" type="xsd:string" minOccurs="0" maxOccurs="1" />
+				</xsd:sequence>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PolicyPaymentSummaryResponse">
+    	<xsd:complexContent>
+    		<xsd:extension base="ivrResponse:IvrResponse">
+	    		<xsd:sequence>
+	    			<xsd:element minOccurs="1" maxOccurs="1"
+	    				name="billingValidationMessage" type="xsd:string" />
+	    			<xsd:element name="dateOfBirth" maxOccurs="1"
+	    				minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="paidToDate" maxOccurs="1"
+	    				minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="lastPaymentDate" maxOccurs="1"
+	    				minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="paymentDuePeriodEndDate"
+	    				maxOccurs="1" minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="paymentDueDueDate" maxOccurs="1"
+	    				minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="paymentDueAmount" minOccurs="0"
+	    				maxOccurs="1" type="xsd:string" />
+	    			<xsd:element name="paymentDuePostedDate"
+	    				maxOccurs="1" minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="postedDate" maxOccurs="1"
+	    				minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="amount" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="lastPaymentDueAmount" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="frequency" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="meansOfPayment" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="premiumAmount" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="paymentStatus" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="totalPaymentDuePeriodEndDate"
+	    				maxOccurs="1" minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="totalPaymentDueDueDate"
+	    				maxOccurs="1" minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="totalPaymentDueAmount"
+	    				minOccurs="0" maxOccurs="1" type="xsd:string" />
+	    			<xsd:element name="totalPaymentDuePostedDate"
+	    				maxOccurs="1" minOccurs="0" type="xsd:date" />
+	    			<xsd:element name="productKind" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="productSubkind" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="preferredMeansOfPayment" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1"></xsd:element>
+	    			<xsd:element name="electronicPaymentAllowed" type="xsd:boolean"
+	    				minOccurs="0" maxOccurs="1"></xsd:element>
+	    			<xsd:element name="customerId" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<xsd:element name="customerName" type="xsd:string"
+	    				minOccurs="0" maxOccurs="1" />
+	    			<!-- xsd:element name="billedToDate" type="xsd:date"
+	    				maxOccurs="1" minOccurs="0">
+	    			</xsd:element-->
+	    			<!-- xsd:element name="isPastDue"
+	    				type="xsd:boolean" maxOccurs="1" minOccurs="0">
+	    			</xsd:element>
+	    			<xsd:element name="pastDueAmount" 
+	    				type="xsd:string" maxOccurs="1" minOccurs="0"></xsd:element>
+	    			<xsd:element name="isInsproPolicyPaymentSummary"
+	    				type="xsd:boolean" maxOccurs="1" minOccurs="1">
+	    			</xsd:element-->
+	    			<!-- xsd:element name="policyAccountNumber"
+	    				type="xsd:string" maxOccurs="1" minOccurs="0">
+	    			</xsd:element-->
+	    			<!-- xsd:element name="accountBalance"
+	    				type="xsd:decimal" maxOccurs="1" minOccurs="0">
+	    			</xsd:element>
+	    			<xsd:element name="totalPastDueAmount"
+	    				type="xsd:decimal" maxOccurs="1" minOccurs="0">
+	    			</xsd:element-->
+	    			<!-- xsd:element name="currentDueDate" type="xsd:date"
+	    				maxOccurs="1" minOccurs="0">
+	    			</xsd:element-->
+	    			<!-- xsd:element name="isMoneyInSuspense"
+	    				type="xsd:boolean" maxOccurs="1" minOccurs="0">
+	    			</xsd:element-->
+	    			<!-- xsd:element name="policySuspenseCode"
+	    				type="xsd:string" maxOccurs="1" minOccurs="0">
+	    			</xsd:element-->
+	    			<!-- xsd:element name="policyStatus" type="xsd:string" 
+	    				maxOccurs="1" minOccurs="0">
+	    			</xsd:element-->	    			
+	    		</xsd:sequence>
+    		</xsd:extension>
+    	</xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>
