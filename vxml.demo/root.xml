@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml xmlns="http://www.w3.org/2001/vxml" version="2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/vxml http://ericp56.github.io/vxml.xsd/vxml.xsd">
+
+    <meta name="copyright" content="2021 PECS, LLC" />
+    <meta name="maintainer" content="ericp@nextivr.com" />
+    <var name="exit_reason" expr="'unknown'" />
+    <var name="breadcrumb" expr="'start'" />
+
+    <error>
+        <prompt bargein="false">
+            <audio src="./prompts/error1.wav">Sorry, but we're having problems.  Please try again later.</audio>
+        </prompt>
+        <assign name="exit_reason" expr="'error'" />
+        <exit namelist="reason" />
+    </error>
+
+    <nomatch count="1">
+        <prompt bargein="false">
+            <audio src="./prompts/nomatch1.wav">I didn't get that.</audio>
+        </prompt>
+        <reprompt />
+    </nomatch>
+    <nomatch count="2">
+        <prompt bargein="false">
+            <audio src="./prompts/nomatch2.wav">I still didn't get that.</audio>
+        </prompt>
+        <reprompt />
+    </nomatch>
+    <nomatch count="3">
+        <prompt bargein="false">
+            <audio src="./prompts/nomatch3.wav">Please try again later.</audio>
+        </prompt>
+        <assign name="exit_reason" expr="'nomatchmax'" />
+        <exit namelist="reason" />
+    </nomatch>
+
+    <form id="root">
+        <block>
+            <goto next="mainmenu.xml"/>
+        </block>
+    </form>
+
+
+</vxml>	
