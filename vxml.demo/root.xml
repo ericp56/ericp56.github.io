@@ -11,7 +11,7 @@
             <audio src="./prompts/error1.wav">Sorry, but we're having problems.  Please try again later.</audio>
         </prompt>
         <assign name="exit_reason" expr="'error'" />
-        <exit namelist="reason" />
+        <exit namelist="exit_reason" />
     </error>
     <error count="2">
         <exit/>
@@ -34,7 +34,7 @@
             <audio src="./prompts/nomatch3.wav">Please try again later.</audio>
         </prompt>
         <assign name="exit_reason" expr="'nomatchmax'" />
-        <exit namelist="reason" />
+        <exit namelist="exit_reason" />
     </nomatch>
 
     <form id="root">
