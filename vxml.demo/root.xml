@@ -13,6 +13,9 @@
         <assign name="exit_reason" expr="'error'" />
         <exit namelist="reason" />
     </error>
+    <error count="2">
+        <exit/>
+    </error>
 
     <nomatch count="1">
         <prompt bargein="false">
