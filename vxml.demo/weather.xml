@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <vxml xmlns="http://www.w3.org/2001/vxml" version="2.1"
-	application="root.xml" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.w3.org/2001/vxml http://ericp56.github.io/vxml.xsd/vxml.xsd">
 
 	<meta name="copyright" content="2021 PECS, LLC" />
 	<meta name="maintainer" content="ericp@nextivr.com" />
 	<property name="inputmodes" value="dtmf voice" />
-
 	<menu>
-		<prompt count="1"><audio src="./prompts/mainmenu.wav"></audio>Main Menu.  For the weather, press 1.</prompt>
-		<choice dtmf="1" next="weather.xml"/>
+		<prompt count="1"><audio src="./prompts/weathermenu.wav"></audio>Weather Menu.  For the current weather, press 1.</prompt>
+		<choice dtmf="1" next="currentweather.xml"/>
 	</menu>
+
+
 
 </vxml>	
