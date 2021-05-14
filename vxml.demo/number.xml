@@ -7,11 +7,8 @@
 	<meta name="copyright" content="2021 PECS, LLC" />
 	<meta name="maintainer" content="ericp@nextivr.com" />
 	<property name="inputmodes" value="dtmf voice" />
-
 	<menu>
-		<prompt count="1"><audio src="./prompts/mainmenu.wav"></audio>Main Menu.  For the weather, press 1.</prompt>
-		<choice dtmf="1" next="weather.xml"/>
-		<prompt count="1"><audio src="./prompts/mainmenu.wav"></audio>For the number converter, press 2.</prompt>
-		<choice dtmf="2" next="number.xml"/>
+		<prompt count="1"><audio src="./prompts/weathermenu.wav"></audio>Number Menu.  For the number converter, press 1.</prompt>
+		<choice dtmf="1" next="blah.xml"/>
 	</menu>
 </vxml>
