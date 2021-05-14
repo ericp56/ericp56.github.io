@@ -11,7 +11,4 @@
 		<prompt count="1"><audio src="./prompts/weathermenu.wav"></audio>Number Menu.  For the number converter, press 1.</prompt>
 		<choice dtmf="1" next="blah.xml"/>
 	</menu>
-
-
-
-</vxml>	
+</vxml>

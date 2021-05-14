@@ -13,7 +13,5 @@
 		<choice dtmf="1" next="weather.xml"/>
 		<prompt count="1"><audio src="./prompts/mainmenu.wav"></audio>For the number converter, press 2.</prompt>
 		<choice dtmf="2" next="number.xml"/>
-
 	</menu>
-
-</vxml>	
+</vxml>
